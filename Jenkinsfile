@@ -3,9 +3,13 @@ pipeline{
     environment {
         DOCKER_IMAGE = "jenkins-practice-service"
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
-
     }
     stages{
+        stage('Checkout'){
+            steps{
+                echo 'Checkout'
+            }
+        }
         stage('build'){
             steps{
                 script{
