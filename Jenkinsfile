@@ -5,7 +5,6 @@ pipeline{
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
 
     }
-    def appImage
     stages{
         stage('build'){
             steps{
