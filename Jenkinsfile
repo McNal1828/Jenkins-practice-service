@@ -1,16 +1,17 @@
 pipeline{
     agent any
     environment {
-        DOCKER_IMAGE = "jenkins-practice-service:${env.BUILD_ID}"
+        DOCKER_IMAGE = "jenkins-practice-service"
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
 
     }
+    def appImage
     stages{
         stage('build'){
             steps{
                 script{
                     sh 'npm install'
-                    docker.build("${DOCKER_IMAGE}")
+                    appImage = docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
@@ -18,7 +19,8 @@ pipeline{
             steps{
                 script{
                     docker.withRegistry("${DOCKER_REGISTRY_URL}"){
-                        docker.image("${DOCKER_IMAGE}").push()
+                        appImage.push("${env.BUILD_ID}")
+                        appImage.push("latest")
                     }
                 }
             }
