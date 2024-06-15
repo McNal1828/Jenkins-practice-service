@@ -15,6 +15,10 @@ pipeline{
         stage('build'){
             steps{
                 script{
+                    sh 'ls -al'
+                    sh 'pwd'
+                    sh 'node -version'
+                    sh 'npm -version'
                     sh 'npm install'
                     docker.build("${DOCKER_IMAGE}")
                 }
