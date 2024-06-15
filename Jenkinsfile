@@ -1,7 +1,9 @@
 pipeline{
     agent any
     environment {
-        DOCKER_IMAGE = "prireg.mcnal.net/jenkins-practice-service:${env.BUILD_ID}"
+        DOCKER_IMAGE = "jenkins-practice-service:${env.BUILD_ID}"
+        DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
+
     }
     stages{
         stage('Checkout'){
@@ -11,12 +13,20 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh 'npm install'
-                docker.build("${DOCKER_IMAGE}")
+                script{
+                    sh 'npm install'
+                    docker.build("${DOCKER_IMAGE}")
+                }
             }
         }
         stage('push'){
-            docker.image("${DOCKER_IMAGE}").push()
+            steps{
+                script{
+                    docker.withRegistry("${DOCKER_REGISTRY_URL}"){
+                        docker.image("${DOCKER_IMAGE}").push()
+                    }
+                }
+            }
         }
     }
 }
