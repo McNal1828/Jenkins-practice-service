@@ -14,7 +14,9 @@ pipeline{
         stage('build'){
             steps{
                 script{
-                    sh 'npm install'
+                    nodejs('20.14'){
+                        sh 'npm install'
+                    }
                     docker.build("${DOCKER_IMAGE}")
                 }
             }
