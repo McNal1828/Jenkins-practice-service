@@ -1,6 +1,5 @@
 pipeline{
     agent any
-    tools { nodejs 'lts20'}
     environment {
         DOCKER_IMAGE = "jenkins-practice-service:${env.BUILD_ID}"
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
