@@ -17,6 +17,7 @@ pipeline{
                 script{
                     sh 'ls -al'
                     sh 'pwd'
+                    sh 'whoami'
                     sh 'node -version'
                     sh 'npm -version'
                     sh 'npm install'
