@@ -1,5 +1,6 @@
 pipeline{
     agent any
+    tools { nodejs '20.14'}
     environment {
         DOCKER_IMAGE = "jenkins-practice-service:${env.BUILD_ID}"
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
@@ -14,9 +15,7 @@ pipeline{
         stage('build'){
             steps{
                 script{
-                    nodejs('20.14'){
-                        sh 'npm install'
-                    }
+                    sh 'npm install'
                     docker.build("${DOCKER_IMAGE}")
                 }
             }
