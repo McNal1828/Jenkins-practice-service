@@ -24,7 +24,7 @@ pipeline{
             steps{
                 script{
                     sh 'rm -f ~/.dockercfg ~/.docker/config.json || true'
-                    docker.withRegistry("${DOCKER_REGISTRY_URL}",'aws_credential'){
+                    docker.withRegistry("${DOCKER_REGISTRY_URL}","aws_credential"){
                         appImage.push("${env.BUILD_ID}")
                         appImage.push("latest")
                     }
