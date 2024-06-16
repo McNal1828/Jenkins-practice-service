@@ -5,7 +5,7 @@ pipeline{
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
     }
     stages{
-        stage('checkout') {
+        stage('Checkout') {
             steps {
                 git branch: 'master',
                     credentialsId: 'jenkins-token',
