@@ -7,9 +7,9 @@ pipeline{
     stages{
         stage('checkout') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     credentialsId: 'jenkins-token',
-                    url: 'https://github.com/McNal1828/Jenkins-practice-service'
+                    url: 'https://github.com/McNal1828/Jenkins-practice-service.git'
             }
         }
         stage('build'){
