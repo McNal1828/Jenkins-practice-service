@@ -1,8 +1,8 @@
 pipeline{
     agent any
     environment {
-        DOCKER_IMAGE = "jenkins-practice-service"
-        DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
+        DOCKER_IMAGE = "jenkins_practice"
+        DOCKER_REGISTRY_URL = "https://851725225660.dkr.ecr.ap-southeast-2.amazonaws.com"
     }
     stages{
         stage('checkout') {
@@ -23,7 +23,8 @@ pipeline{
         stage('push'){
             steps{
                 script{
-                    docker.withRegistry("${DOCKER_REGISTRY_URL}"){
+                    sh 'rm -f ~/.dockercfg ~/.docker/config.json || true'
+                    docker.withRegistry("${DOCKER_REGISTRY_URL}",'ecr:ap-southeast-2:aws_credential'){
                         appImage.push("${env.BUILD_ID}")
                         appImage.push("latest")
                     }
