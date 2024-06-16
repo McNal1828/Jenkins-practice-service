@@ -9,7 +9,7 @@ pipeline{
             steps {
                 git branch: 'main',
                     credentialsId: 'jenkins-token',
-                    url: 'https://github.com/McNal1828/Jenkins-practice-service.git'
+                    url: 'https://github.com/McNal1828/Jenkins-practice-service'
             }
         }
         stage('build'){
