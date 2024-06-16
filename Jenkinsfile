@@ -5,9 +5,11 @@ pipeline{
         DOCKER_REGISTRY_URL = "https://prireg.mcnal.net"
     }
     stages{
-        stage('Checkout'){
-            steps{
-                echo 'Checkout'
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'jenkins-practice-service',
+                    url: 'https://github.com/McNal1828/Jenkins-practice-service.git'
             }
         }
         stage('build'){
